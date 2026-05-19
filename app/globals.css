@@ -36,15 +36,38 @@ a {
 
 .control-grid {
   background-image:
-    linear-gradient(rgba(250, 248, 244, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(250, 248, 244, 0.06) 1px, transparent 1px);
-  background-size: 56px 56px;
+    linear-gradient(rgba(250, 248, 244, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(250, 248, 244, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
 }
 
-.gold-gradient {
+.terminal-grid {
+  background-image:
+    linear-gradient(rgba(201, 168, 76, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 168, 76, 0.075) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.noise-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.17;
+  background-image:
+    repeating-radial-gradient(circle at 17% 32%, rgba(250, 248, 244, 0.16) 0 1px, transparent 1px 7px),
+    repeating-linear-gradient(135deg, rgba(250, 248, 244, 0.06) 0 1px, transparent 1px 5px);
+  mix-blend-mode: soft-light;
+}
+
+.cinematic-light {
   background:
-    radial-gradient(circle at 20% 20%, rgba(201, 168, 76, 0.22), transparent 32%),
-    linear-gradient(135deg, rgba(250, 248, 244, 0.08), rgba(201, 168, 76, 0.12));
+    radial-gradient(circle at 68% 28%, rgba(201, 168, 76, 0.24), transparent 28%),
+    radial-gradient(circle at 78% 64%, rgba(250, 248, 244, 0.08), transparent 30%),
+    linear-gradient(180deg, #0d0d0d 0%, #11100d 48%, #0d0d0d 100%);
+}
+
+.gold-line {
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.8), transparent);
 }
 
 .soft-mask {

@@ -30,10 +30,10 @@ await mobile.screenshot({ path: path.join(qaDir, "home-mobile.png"), fullPage: t
 await mobile.goto("http://127.0.0.1:3000/en/waiting-list", { waitUntil: "domcontentloaded", timeout: 60000 });
 await mobile.waitForLoadState("networkidle", { timeout: 10000 }).catch(() => undefined);
 await mobile.waitForTimeout(1200);
-await mobile.locator('button:has-text("Generate Advisory Snapshot")').scrollIntoViewIfNeeded();
-await mobile.locator('button:has-text("Generate Advisory Snapshot")').click({ force: true });
+await mobile.locator('button:has-text("Request Advisory Snapshot")').scrollIntoViewIfNeeded();
+await mobile.locator('button:has-text("Request Advisory Snapshot")').click({ force: true });
 await mobile.waitForTimeout(400);
-const submitted = await mobile.locator("text=Application Captured").count();
+const submitted = await mobile.locator("text=Access Request Captured").count();
 await mobile.screenshot({ path: path.join(qaDir, "waiting-list-mobile-submitted.png"), fullPage: true });
 
 await browser.close();

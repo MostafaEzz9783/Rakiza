@@ -7,35 +7,35 @@ import { BrandLink } from "./brand";
 import { Locale, localizedPath } from "@/lib/site";
 
 const nav = [
-  ["Services", "/services"],
+  ["Advisory", "/services"],
   ["Industries", "/industries"],
-  ["Insights", "/insights"],
-  ["Tools", "/tools"],
-  ["Case Studies", "/case-studies"]
+  ["Intelligence", "/insights"],
+  ["Diagnostics", "/tools"],
+  ["Evidence", "/case-studies"]
 ];
 
 export function Header({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-ink/85 text-cream backdrop-blur-xl">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/8 bg-ink/70 text-cream backdrop-blur-2xl">
+      <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-5 sm:px-10">
         <BrandLink locale={locale} />
-        <nav className="hidden items-center gap-8 text-sm text-cream/74 lg:flex">
+        <nav className="hidden items-center gap-9 text-[13px] uppercase tracking-[0.16em] text-cream/58 lg:flex">
           {nav.map(([label, path]) => (
             <Link key={path} href={localizedPath(locale, path)} className="transition hover:text-gold">
               {label}
             </Link>
           ))}
         </nav>
-        <div className="hidden items-center gap-3 lg:flex">
-          <Link href={localizedPath(locale === "en" ? "ar" : "en")} className="text-sm text-cream/70">
-            {locale === "en" ? "العربية" : "English"}
+        <div className="hidden items-center gap-5 lg:flex">
+          <Link href={localizedPath(locale === "en" ? "ar" : "en")} className="text-xs uppercase tracking-[0.16em] text-cream/55">
+            {locale === "en" ? "AR" : "EN"}
           </Link>
           <Link
             href={localizedPath(locale, "/waiting-list")}
-            className="border border-gold bg-gold px-5 py-3 text-sm font-semibold text-ink transition hover:bg-cream"
+            className="border border-gold/60 px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-gold transition hover:bg-gold hover:text-ink"
           >
-            Join the Waiting List
+            Founding Access
           </Link>
         </div>
         <button
@@ -48,18 +48,18 @@ export function Header({ locale }: { locale: Locale }) {
       </div>
       {open ? (
         <div className="border-t border-white/10 bg-ink px-5 py-6 lg:hidden">
-          <nav className="grid gap-4 text-base text-cream/82">
+          <nav className="grid gap-5 text-sm uppercase tracking-[0.12em] text-cream/78">
             {nav.map(([label, path]) => (
               <Link key={path} href={localizedPath(locale, path)} onClick={() => setOpen(false)}>
                 {label}
               </Link>
             ))}
-            <Link href={localizedPath(locale, "/book-call")}>Book a Strategy Call</Link>
+            <Link href={localizedPath(locale, "/book-call")}>Strategy Call</Link>
             <Link
               href={localizedPath(locale, "/waiting-list")}
-              className="mt-2 bg-gold px-5 py-3 text-center font-semibold text-ink"
+              className="mt-2 border border-gold bg-gold px-5 py-3 text-center font-semibold text-ink"
             >
-              Join the Waiting List
+              Founding Client Access
             </Link>
           </nav>
         </div>
@@ -71,21 +71,21 @@ export function Header({ locale }: { locale: Locale }) {
 export function Footer({ locale }: { locale: Locale }) {
   return (
     <footer className="bg-ink text-cream">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.2fr_2fr]">
+      <div className="mx-auto grid max-w-[1480px] gap-16 px-5 py-20 sm:px-10 lg:grid-cols-[1.1fr_1.4fr]">
         <div>
           <BrandLink locale={locale} />
-          <p className="mt-6 max-w-md text-sm leading-7 text-cream/66">
-            Premium Growth & Financial Advisory for SMEs and growth-stage companies across Egypt,
-            GCC, and MENA.
+          <p className="mt-7 max-w-md text-sm leading-7 text-cream/58">
+            Growth & Financial Advisory for companies that need visibility, control, and strategic
+            confidence before the next stage of scale.
           </p>
         </div>
-        <div className="grid gap-8 sm:grid-cols-3">
+        <div className="grid gap-10 sm:grid-cols-3">
           <FooterGroup title="Advisory" items={["Fractional CFO", "FP&A", "Valuation", "Pricing"]} />
-          <FooterGroup title="Company" items={["Industries", "Case Studies", "Insights", "Tools"]} />
-          <FooterGroup title="Start" items={["Waiting List", "Book a Call", "Health Check"]} />
+          <FooterGroup title="Company" items={["Industries", "Evidence", "Intelligence", "Diagnostics"]} />
+          <FooterGroup title="Access" items={["Founding Access", "Strategy Call", "Health Check"]} />
         </div>
       </div>
-      <div className="border-t border-white/10 px-5 py-6 text-center text-xs text-cream/48">
+      <div className="border-t border-white/10 px-5 py-6 text-center text-xs text-cream/40">
         © 2026 Rakiza. Growth & Financial Advisory.
       </div>
     </footer>
@@ -95,8 +95,8 @@ export function Footer({ locale }: { locale: Locale }) {
 function FooterGroup({ title, items }: { title: string; items: string[] }) {
   return (
     <div>
-      <h2 className="text-sm font-semibold text-gold">{title}</h2>
-      <ul className="mt-4 grid gap-3 text-sm text-cream/66">
+      <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">{title}</h2>
+      <ul className="mt-5 grid gap-3 text-sm text-cream/58">
         {items.map((item) => (
           <li key={item}>{item}</li>
         ))}
