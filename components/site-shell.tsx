@@ -7,33 +7,32 @@ import { BrandLink } from "./brand";
 import { Locale, localizedPath } from "@/lib/site";
 
 const nav = [
+  ["Approach", "/"],
   ["Advisory", "/services"],
   ["Industries", "/industries"],
-  ["Intelligence", "/insights"],
-  ["Diagnostics", "/tools"],
-  ["Evidence", "/case-studies"]
+  ["Insights", "/insights"]
 ];
 
 export function Header({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/8 bg-ink/70 text-cream backdrop-blur-2xl">
-      <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-5 sm:px-10">
+    <header className="fixed left-0 right-0 top-0 z-50 px-4 pt-5 text-[var(--text-primary)] sm:px-8">
+      <div className="mx-auto flex h-16 w-full max-w-[1180px] items-center justify-between rounded-full border border-[var(--border-subtle)] bg-[rgba(8,8,8,0.85)] px-4 shadow-[0_24px_90px_rgba(0,0,0,0.34)] backdrop-blur-xl sm:px-6">
         <BrandLink locale={locale} />
-        <nav className="hidden items-center gap-9 text-[13px] uppercase tracking-[0.16em] text-cream/58 lg:flex">
+        <nav className="hidden items-center gap-8 text-[11px] uppercase tracking-[0.22em] text-[var(--text-secondary)] lg:flex">
           {nav.map(([label, path]) => (
-            <Link key={path} href={localizedPath(locale, path)} className="transition hover:text-gold">
+            <Link key={label} href={localizedPath(locale, path)} className="transition duration-300 hover:text-[var(--text-primary)]">
               {label}
             </Link>
           ))}
         </nav>
         <div className="hidden items-center gap-5 lg:flex">
-          <Link href={localizedPath(locale === "en" ? "ar" : "en")} className="text-xs uppercase tracking-[0.16em] text-cream/55">
+          <Link href={localizedPath(locale === "en" ? "ar" : "en")} className="text-[11px] uppercase tracking-[0.18em] text-[var(--text-tertiary)]">
             {locale === "en" ? "AR" : "EN"}
           </Link>
           <Link
             href={localizedPath(locale, "/waiting-list")}
-            className="border border-gold/60 px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-gold transition hover:bg-gold hover:text-ink"
+            className="rounded-full border border-[rgba(201,169,110,0.5)] px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--gold-primary)] transition duration-300 hover:border-[var(--gold-primary)] hover:text-[var(--text-primary)]"
           >
             Founding Access
           </Link>
@@ -41,23 +40,26 @@ export function Header({ locale }: { locale: Locale }) {
         <button
           aria-label="Open navigation"
           onClick={() => setOpen((value) => !value)}
-          className="grid h-11 w-11 place-items-center border border-white/15 text-cream lg:hidden"
+          className="relative grid h-10 w-10 place-items-center rounded-full border border-[var(--border-visible)] text-[var(--text-primary)] lg:hidden"
         >
-          {open ? <X size={18} /> : <Menu size={18} />}
+          {open ? <X size={17} /> : <Menu size={17} />}
         </button>
       </div>
       {open ? (
-        <div className="border-t border-white/10 bg-ink px-5 py-6 lg:hidden">
-          <nav className="grid gap-5 text-sm uppercase tracking-[0.12em] text-cream/78">
+        <div className="fixed inset-0 z-[-1] bg-black/90 px-6 pt-28 backdrop-blur-3xl lg:hidden">
+          <nav className="grid gap-7 text-2xl text-[var(--text-primary)]">
             {nav.map(([label, path]) => (
-              <Link key={path} href={localizedPath(locale, path)} onClick={() => setOpen(false)}>
+              <Link key={label} href={localizedPath(locale, path)} onClick={() => setOpen(false)} className="font-display">
                 {label}
               </Link>
             ))}
-            <Link href={localizedPath(locale, "/book-call")}>Strategy Call</Link>
+            <Link href={localizedPath(locale, "/book-call")} onClick={() => setOpen(false)} className="font-display">
+              Strategy Call
+            </Link>
             <Link
               href={localizedPath(locale, "/waiting-list")}
-              className="mt-2 border border-gold bg-gold px-5 py-3 text-center font-semibold text-ink"
+              onClick={() => setOpen(false)}
+              className="mt-5 rounded-full border border-[rgba(201,169,110,0.5)] px-5 py-4 text-center text-xs font-medium uppercase tracking-[0.18em] text-[var(--gold-primary)]"
             >
               Founding Client Access
             </Link>
@@ -70,22 +72,21 @@ export function Header({ locale }: { locale: Locale }) {
 
 export function Footer({ locale }: { locale: Locale }) {
   return (
-    <footer className="bg-ink text-cream">
-      <div className="mx-auto grid max-w-[1480px] gap-16 px-5 py-20 sm:px-10 lg:grid-cols-[1.1fr_1.4fr]">
+    <footer className="bg-[var(--bg-void)] text-[var(--text-primary)]">
+      <div className="mx-auto grid max-w-[1180px] gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[1.1fr_2fr]">
         <div>
           <BrandLink locale={locale} />
-          <p className="mt-7 max-w-md text-sm leading-7 text-cream/58">
-            Growth & Financial Advisory for companies that need visibility, control, and strategic
-            confidence before the next stage of scale.
+          <p className="mt-6 max-w-sm text-sm leading-7 text-[var(--text-secondary)]">
+            Financial Intelligence for Scaling Companies.
           </p>
         </div>
         <div className="grid gap-10 sm:grid-cols-3">
-          <FooterGroup title="Advisory" items={["Fractional CFO", "FP&A", "Valuation", "Pricing"]} />
-          <FooterGroup title="Company" items={["Industries", "Evidence", "Intelligence", "Diagnostics"]} />
-          <FooterGroup title="Access" items={["Founding Access", "Strategy Call", "Health Check"]} />
+          <FooterGroup title="Services" items={["CFO-as-a-Service", "FP&A Infrastructure", "Financial Modeling", "Pricing Intelligence"]} />
+          <FooterGroup title="Contact" items={["Cairo", "Dubai", "Riyadh", "hello@rakiza.com"]} />
+          <FooterGroup title="Access" items={["Founding Client Access", "Strategy Call", "Advisory Path"]} />
         </div>
       </div>
-      <div className="border-t border-white/10 px-5 py-6 text-center text-xs text-cream/40">
+      <div className="border-t border-[var(--border-faint)] px-5 py-6 text-center text-[10px] text-[var(--text-tertiary)]">
         © 2026 Rakiza. Growth & Financial Advisory.
       </div>
     </footer>
@@ -95,8 +96,8 @@ export function Footer({ locale }: { locale: Locale }) {
 function FooterGroup({ title, items }: { title: string; items: string[] }) {
   return (
     <div>
-      <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">{title}</h2>
-      <ul className="mt-5 grid gap-3 text-sm text-cream/58">
+      <h2 className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--gold-muted)]">{title}</h2>
+      <ul className="mt-5 grid gap-3 text-sm text-[var(--text-secondary)]">
         {items.map((item) => (
           <li key={item}>{item}</li>
         ))}

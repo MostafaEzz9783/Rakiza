@@ -3,14 +3,20 @@ import { Locale, localizedPath } from "@/lib/site";
 
 export function RakizaMark({ className = "" }: { className?: string }) {
   return (
-    <span
-      aria-hidden="true"
-      className={`relative inline-grid h-10 w-10 place-items-center overflow-hidden border border-gold/40 bg-ink text-cream ${className}`}
-    >
-      <span className="absolute inset-1 border-l-2 border-t-2 border-gold" />
-      <span className="absolute right-2 top-2 h-6 w-2 bg-gold" />
-      <span className="absolute bottom-2 left-3 h-2 w-5 bg-gold" />
-      <span className="relative text-lg font-semibold tracking-[0.08em]">R</span>
+    <span aria-hidden="true" className={`inline-grid h-10 w-10 place-items-center ${className}`}>
+      <svg viewBox="0 0 96 96" className="h-full w-full" role="img">
+        <defs>
+          <linearGradient id="rakizaBrandGold" x1="18" y1="14" x2="78" y2="82" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#F5D77A" />
+            <stop offset="0.42" stopColor="#C9A84C" />
+            <stop offset="1" stopColor="#7F6421" />
+          </linearGradient>
+        </defs>
+        <rect width="96" height="96" rx="10" fill="#0D0D0D" />
+        <path d="M25 18H63.8C74.2 18 82 25.4 82 35.4C82 45.7 74.1 53 63.3 53H53.4L72.5 78H56.7L28.8 42.3H57.9C64.8 42.3 68.9 39.6 68.9 35.2C68.9 30.8 64.8 28.4 57.9 28.4H25V18Z" fill="url(#rakizaBrandGold)" />
+        <path d="M22 58H38V74H22V58Z" fill="url(#rakizaBrandGold)" />
+        <path d="M37.8 38.8L67.6 78H52.2L22.6 38.8H37.8Z" fill="url(#rakizaBrandGold)" />
+      </svg>
     </span>
   );
 }
@@ -19,7 +25,7 @@ export function BrandLink({ locale }: { locale: Locale }) {
   return (
     <Link href={localizedPath(locale)} className="flex items-center gap-3" aria-label="Rakiza home">
       <RakizaMark />
-      <span className="text-lg font-semibold tracking-[0.02em]">Rakiza</span>
+      <span className="text-sm font-semibold uppercase tracking-[0.28em] text-cream">Rakiza</span>
     </Link>
   );
 }
