@@ -3,8 +3,8 @@ import { baseUrl, industries, locales, services } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = ["", "/services", "/industries", "/insights", "/tools", "/case-studies", "/waiting-list", "/book-call"];
-  const servicePaths = services.map((service) => `/services/${service.slug}`);
-  const industryPaths = industries.map((industry) => `/industries/${industry.slug}`);
+  const servicePaths = services.en.map((service) => `/services/${service.slug}`);
+  const industryPaths = industries.en.map((industry) => `/industries/${industry.slug}`);
   const insightPaths = [
     "/insights/financial-visibility-for-smes",
     "/insights/fractional-cfo-egypt-guide",

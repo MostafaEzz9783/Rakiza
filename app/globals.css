@@ -29,16 +29,23 @@
   --foreground: var(--text-primary);
 }
 
+html[dir="rtl"] {
+  --font-display: var(--font-arabic), "Cairo", sans-serif;
+  --font-sans: var(--font-arabic), "Cairo", sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }
 
 html {
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
+  overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);

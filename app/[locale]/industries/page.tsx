@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function IndustriesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: rawLocale } = await params;
   const locale = rawLocale as Locale;
+  const localeIndustries = industries[locale] ?? industries.en;
   return (
     <main className="bg-cream pt-32">
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
@@ -29,7 +30,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
           </p>
         </Reveal>
         <div className="mt-16 grid gap-px border border-line bg-line md:grid-cols-2 lg:grid-cols-5">
-          {industries.map((industry) => (
+          {localeIndustries.map((industry) => (
             <Link key={industry.slug} href={localizedPath(locale, `/industries/${industry.slug}`)} className="bg-white p-7 transition hover:bg-ink hover:text-cream">
               <h2 className="text-2xl font-semibold">{industry.title}</h2>
               <p className="mt-5 text-sm leading-6 text-slate">{industry.challenge}</p>

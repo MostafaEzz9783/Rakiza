@@ -31,6 +31,8 @@ await mobile.goto("http://127.0.0.1:3000/en/waiting-list", { waitUntil: "domcont
 await mobile.waitForLoadState("networkidle", { timeout: 10000 }).catch(() => undefined);
 await mobile.waitForTimeout(1200);
 await mobile.locator('button:has-text("Request Diagnostic Access")').scrollIntoViewIfNeeded();
+await mobile.locator('input[placeholder="Company legal or trade name"]').fill("Rakiza QA Company");
+await mobile.locator('input[type="email"]').fill("qa@rakiza.co");
 await mobile.locator('button:has-text("Request Diagnostic Access")').click({ force: true });
 await mobile.waitForTimeout(400);
 const submitted = await mobile.locator("text=Access Request Captured").count();

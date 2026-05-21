@@ -8,14 +8,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const locale = rawLocale as Locale;
   const metadata = createMetadata({
     locale,
-    title: "Rakiza - Financial Advisory & CFO-as-a-Service | Egypt, GCC, MENA",
+    title: "Rakiza — Financial Intelligence & Advisory | CFO Services Egypt & GCC",
     description:
-      "Rakiza is a boutique Growth & Financial Advisory firm for scaling companies across Egypt, GCC and MENA. Fractional CFO, FP&A infrastructure, financial modeling, and cash flow architecture."
+      "Rakiza is a private financial intelligence firm delivering CFO-as-a-Service, FP&A infrastructure, financial modeling, and growth reporting systems for scaling companies across Egypt, GCC, and MENA."
   });
   return {
     ...metadata,
     title: {
-      absolute: "Rakiza - Financial Advisory & CFO-as-a-Service | Egypt, GCC, MENA"
+      absolute: "Rakiza — Financial Intelligence & Advisory | CFO Services Egypt & GCC"
+    },
+    openGraph: {
+      ...metadata.openGraph,
+      title: "Clarity is a competitive advantage. — Rakiza",
+      description: "Most businesses don't fail from lack of growth. They fail from lack of visibility."
     }
   };
 }
@@ -25,7 +30,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const locale = rawLocale as Locale;
   return (
     <>
-      <JsonLd data={[orgSchema(), faqSchema(faqs)]} />
+      <JsonLd data={[orgSchema(), faqSchema(faqs[locale] ?? faqs.en)]} />
       <HomeExperience locale={locale} />
     </>
   );

@@ -5,7 +5,7 @@ import { createMetadata } from "@/lib/seo";
 import { Locale, industries, localizedPath } from "@/lib/site";
 
 export function generateStaticParams() {
-  return industries.flatMap((industry) => [
+  return industries.en.flatMap((industry) => [
     { locale: "en", slug: industry.slug },
     { locale: "ar", slug: industry.slug }
   ]);
@@ -14,7 +14,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale: rawLocale, slug } = await params;
   const locale = rawLocale as Locale;
-  const industry = industries.find((item) => item.slug === slug);
+  const industry = (industries[locale] ?? industries.en).find((item) => item.slug === slug);
   if (!industry) return {};
   return createMetadata({
     locale,
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function IndustryDetailPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale: rawLocale, slug } = await params;
   const locale = rawLocale as Locale;
-  const industry = industries.find((item) => item.slug === slug);
+  const industry = (industries[locale] ?? industries.en).find((item) => item.slug === slug);
   if (!industry) notFound();
   return (
     <main className="bg-cream pt-32">
