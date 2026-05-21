@@ -6,12 +6,18 @@ import { faqs, Locale } from "@/lib/site";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: rawLocale } = await params;
   const locale = rawLocale as Locale;
-  return createMetadata({
+  const metadata = createMetadata({
     locale,
-    title: "Rakiza | Growth & Financial Advisory for SMEs in Egypt and MENA",
+    title: "Rakiza - Financial Advisory & CFO-as-a-Service | Egypt, GCC, MENA",
     description:
-      "CFO-as-a-Service, FP&A, financial modeling, valuation, pricing intelligence, and business analytics for SMEs and growth-stage companies."
+      "Rakiza is a boutique Growth & Financial Advisory firm for scaling companies across Egypt, GCC and MENA. Fractional CFO, FP&A infrastructure, financial modeling, and cash flow architecture."
   });
+  return {
+    ...metadata,
+    title: {
+      absolute: "Rakiza - Financial Advisory & CFO-as-a-Service | Egypt, GCC, MENA"
+    }
+  };
 }
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {

@@ -3,7 +3,7 @@ import { Locale, localizedPath } from "@/lib/site";
 
 export function RakizaMark({ className = "" }: { className?: string }) {
   return (
-    <span aria-hidden="true" className={`inline-grid h-10 w-10 place-items-center ${className}`}>
+    <span aria-hidden="true" className={`inline-grid h-7 w-7 place-items-center ${className}`}>
       <svg viewBox="0 0 96 96" className="h-full w-full" role="img">
         <defs>
           <linearGradient id="rakizaBrandGold" x1="18" y1="14" x2="78" y2="82" gradientUnits="userSpaceOnUse">
@@ -25,7 +25,7 @@ export function BrandLink({ locale }: { locale: Locale }) {
   return (
     <Link href={localizedPath(locale)} className="flex items-center gap-3" aria-label="Rakiza home">
       <RakizaMark />
-      <span className="text-sm font-semibold uppercase tracking-[0.28em] text-cream">Rakiza</span>
+      <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-[var(--text-primary)]">Rakiza</span>
     </Link>
   );
 }

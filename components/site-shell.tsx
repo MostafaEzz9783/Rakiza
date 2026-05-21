@@ -17,9 +17,9 @@ export function Header({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
   return (
     <header className="fixed left-0 right-0 top-0 z-50 px-4 pt-5 text-[var(--text-primary)] sm:px-8">
-      <div className="mx-auto flex h-16 w-full max-w-[1180px] items-center justify-between rounded-full border border-[var(--border-subtle)] bg-[rgba(8,8,8,0.85)] px-4 shadow-[0_24px_90px_rgba(0,0,0,0.34)] backdrop-blur-xl sm:px-6">
+      <div className="mx-auto flex h-14 w-fit min-w-[min(1180px,calc(100vw-32px))] items-center justify-between rounded-full border border-[var(--border-subtle)] bg-[oklch(4%_0.005_60_/_0.85)] px-4 shadow-[0_24px_90px_rgba(0,0,0,0.34)] backdrop-blur-xl sm:px-5">
         <BrandLink locale={locale} />
-        <nav className="hidden items-center gap-8 text-[11px] uppercase tracking-[0.22em] text-[var(--text-secondary)] lg:flex">
+        <nav className="hidden items-center gap-8 text-[0.8125rem] font-normal tracking-[0.04em] text-[var(--text-secondary)] lg:flex">
           {nav.map(([label, path]) => (
             <Link key={label} href={localizedPath(locale, path)} className="transition duration-300 hover:text-[var(--text-primary)]">
               {label}
@@ -32,7 +32,7 @@ export function Header({ locale }: { locale: Locale }) {
           </Link>
           <Link
             href={localizedPath(locale, "/waiting-list")}
-            className="rounded-full border border-[rgba(201,169,110,0.5)] px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--gold-primary)] transition duration-300 hover:border-[var(--gold-primary)] hover:text-[var(--text-primary)]"
+            className="rounded-full border border-[oklch(75%_0.12_85_/_0.4)] bg-[oklch(6%_0.005_60)] px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--gold-primary)] transition duration-300 hover:border-[var(--gold-primary)] hover:bg-[oklch(75%_0.12_85_/_0.06)]"
           >
             Founding Access
           </Link>

@@ -16,7 +16,9 @@ const config: Config = {
         line: "rgba(13, 13, 13, 0.12)"
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "Arial", "sans-serif"]
+        sans: ["var(--font-ui)"],
+        display: ["var(--font-display)"],
+        data: ["var(--font-data)"]
       },
       boxShadow: {
         gold: "0 24px 80px rgba(201, 168, 76, 0.18)",

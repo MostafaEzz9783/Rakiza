@@ -1,78 +1,65 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Check, Circle, LockKeyhole, RadioTower } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, Circle, LockKeyhole } from "lucide-react";
+import { motion } from "framer-motion";
 import { Locale, localizedPath } from "@/lib/site";
 import { Reveal } from "./motion";
 
-const kpis = [
-  ["Cash Conversion Cycle", "34 days", "-8 vs last Q"],
-  ["Forecast Confidence", "91%", "+4pts"],
-  ["Gross Margin Target", "64.2%", "on track"],
-  ["Reporting Latency", "3 days", "improved"],
-  ["Pricing Leakage Risk", "LOW", "monitored"],
-  ["Monthly Close Day", "Day 4", "achieved"]
+const visibilityRows = [
+  ["Cash Conversion Cycle", "14 days", "31 days", "-55%", "IMPROVED", "green"],
+  ["Forecast Confidence", "94.2%", "61.0%", "+33.2pp", "ON TARGET", "green"],
+  ["Gross Margin", "67.8%", "64.1%", "+3.7pp", "ABOVE PLAN", "green"],
+  ["Reporting Latency", "2 days", "18 days", "-89%", "RESOLVED", "green"],
+  ["Pricing Leakage", "0.8%", "4.2%", "-3.4pp", "CONTROLLED", "amber"],
+  ["Monthly Close", "Day 3", "Day 14", "-79%", "ACCELERATED", "green"]
 ];
 
-const systems = [
-  ["01", "CFO-as-a-Service", "Financial leadership without the full-time cost"],
-  ["02", "FP&A Infrastructure", "Budgets, forecasts, and variance that boards trust"],
-  ["03", "Financial Modeling", "Decisions built on numbers, not instinct"],
-  ["04", "Pricing Intelligence", "Capture the value you are already creating"],
-  ["05", "Cash Flow Architecture", "Runway clarity and working capital control"],
-  ["06", "Growth Reporting Systems", "The operating rhythm that scaling demands"]
+const services = [
+  ["CFO-as-a-Service", "Fractional CFO Egypt leadership for cash, reporting, and board-grade decisions."],
+  ["FP&A Infrastructure", "FP&A Consultant Egypt systems for budgets, forecasts, and variance control."],
+  ["Financial Modeling", "Business Valuation Egypt and scenario models built on numbers, not instinct."],
+  ["Pricing Intelligence", "Pricing discipline that connects revenue decisions to margin outcomes."],
+  ["Cash Flow Architecture", "Cash Flow Management Egypt frameworks for runway and working capital control."],
+  ["Growth Reporting Systems", "SME Financial Advisory cadence for weekly pulse and board intelligence."]
 ];
 
-const controlWords = "We do not deliver reports. We build your financial operating rhythm.".split(" ");
+const cadenceRows = [
+  ["Weekly Executive Briefing", "Automated", "Every Monday 06:00"],
+  ["Cash Flow Horizon", "Rolling", "90-Day Forward View"],
+  ["Scenario Modeling", "Active", "3 Parallel Projections"],
+  ["Board Reporting Package", "Ready", "Quarterly + On-Demand"]
+];
+
+const arc = [
+  ["01", "Visibility", "Visibility without control is awareness."],
+  ["02", "Control", "Control without intelligence is process."],
+  ["03", "Intelligence", "Intelligence with systems is compounding advantage."]
+];
 
 export function HomeExperience({ locale }: { locale: Locale }) {
-  const { scrollYProgress } = useScroll();
-  const lineY = useTransform(scrollYProgress, [0, 0.2], [0, -55]);
-  const lineOpacity = useTransform(scrollYProgress, [0, 0.12, 0.24], [0.28, 0.85, 0.18]);
-
   return (
     <main className="bg-[var(--bg-void)] text-[var(--text-primary)]">
-      <section className="relative min-h-[100dvh] overflow-hidden bg-[var(--bg-void)] px-5 pb-24 pt-28 sm:px-8 lg:px-[10vw]">
-        <div className="absolute inset-0 control-grid opacity-45" />
-        <div className="absolute bottom-[12vh] left-[18vw] h-[520px] w-[520px] rounded-full bg-[var(--gold-whisper)] blur-[140px]" />
-        <motion.div
-          style={{ y: lineY, opacity: lineOpacity }}
-          className="absolute bottom-[26vh] right-[12vw] hidden h-32 w-[38vw] lg:block"
-        >
-          <svg viewBox="0 0 620 160" className="h-full w-full overflow-visible">
-            <path
-              d="M2 122 C 80 118, 110 88, 170 96 S 276 132, 338 76 450 34, 618 48"
-              fill="none"
-              stroke="rgba(201,169,110,0.42)"
-              strokeWidth="1.5"
-            />
-            <circle cx="338" cy="76" r="4" fill="var(--gold-muted)" />
-          </svg>
-        </motion.div>
-
-        <div className="relative z-10 flex min-h-[calc(100dvh-7rem)] items-end">
-          <Reveal className="max-w-4xl pb-10">
-            <p className="mb-8 inline-flex rounded-full border border-[rgba(201,169,110,0.28)] px-4 py-2 text-[11px] uppercase tracking-[0.24em] text-[var(--gold-muted)]">
+      <section className="relative flex min-h-[100dvh] items-center overflow-hidden bg-[var(--bg-void)] px-5 py-28 sm:px-8 lg:px-[10vw]">
+        <div className="absolute inset-0 control-grid opacity-70" />
+        <div className="absolute left-1/2 top-1/2 h-[70vw] max-h-[720px] w-[70vw] max-w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[oklch(75%_0.12_85_/_0.03)] blur-[120px]" />
+        <div className="relative z-10 mx-auto w-full max-w-5xl text-center">
+          <Reveal>
+            <p className="mx-auto mb-8 w-fit rounded-full border border-[oklch(75%_0.12_85_/_0.28)] px-4 py-2 text-[11px] uppercase tracking-[0.15em] text-[var(--gold-muted)]">
               Financial Intelligence · Cairo — Dubai — Riyadh
             </p>
-            <h1 className="font-display max-w-4xl text-[clamp(56px,7vw,96px)] leading-[0.95] tracking-[-0.035em] text-[var(--text-primary)]">
+            <h1 className="font-display mx-auto max-w-[760px] text-[clamp(3.5rem,7vw,7rem)] leading-[0.95] tracking-[-0.03em]">
               Clarity is a competitive advantage.
             </h1>
-            <p className="mt-8 max-w-[440px] text-lg font-light leading-[1.75] text-[var(--text-secondary)]">
+            <p className="mx-auto mt-8 max-w-[440px] text-[1.0625rem] font-light leading-[1.7] text-[var(--text-secondary)]">
               Most businesses do not fail from lack of growth. They fail from lack of visibility.
             </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Link
-                href={localizedPath(locale, "/waiting-list")}
-                className="inline-flex items-center justify-center rounded-full border border-[rgba(201,169,110,0.56)] px-6 py-4 text-xs font-medium uppercase tracking-[0.18em] text-[var(--gold-primary)] transition duration-500 hover:border-[var(--gold-primary)] hover:text-[var(--text-primary)]"
-              >
+            <HeroSignalStrip />
+            <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+              <Link href={localizedPath(locale, "/waiting-list")} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[oklch(75%_0.12_85_/_0.4)] bg-[oklch(6%_0.005_60)] px-6 text-xs font-medium uppercase tracking-[0.18em] text-[var(--gold-primary)] transition duration-300 hover:border-[var(--gold-primary)] hover:bg-[oklch(75%_0.12_85_/_0.06)]">
                 Founding Client Access
               </Link>
-              <Link
-                href={localizedPath(locale, "/book-call")}
-                className="inline-flex items-center justify-center gap-2 rounded-full px-3 py-4 text-xs font-medium uppercase tracking-[0.18em] text-[var(--text-secondary)] transition duration-500 hover:text-[var(--text-primary)]"
-              >
+              <Link href={localizedPath(locale, "/book-call")} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-3 text-xs font-medium uppercase tracking-[0.18em] text-[var(--text-secondary)] transition duration-300 hover:text-[var(--text-primary)]">
                 Strategy Call <ArrowRight size={14} />
               </Link>
             </div>
@@ -83,21 +70,35 @@ export function HomeExperience({ locale }: { locale: Locale }) {
       <SignalBar />
       <ProblemReveal />
       <VisibilitySystem />
-      <SystemsList />
+      <ServicesSection />
       <IntelligenceDetails />
       <ControlStatement />
-      <ScalingCascade />
+      <ScalingArc />
       <FoundingAccess locale={locale} />
     </main>
   );
 }
 
-function SignalBar() {
+function HeroSignalStrip() {
   return (
-    <section className="border-y border-[var(--border-faint)] bg-[var(--bg-deep)] px-5 py-8 sm:px-8 lg:px-[10vw]">
-      <div className="flex flex-col justify-between gap-5 text-[11px] uppercase tracking-[0.2em] text-[var(--text-secondary)] md:flex-row">
-        <span>Serving scaling companies across Egypt, GCC & MENA</span>
-        <span>EGP 20M+ Revenue · Growth-Stage · Founder-Led</span>
+    <div className="mx-auto mt-9 flex max-w-3xl flex-col justify-center gap-3 font-data text-[10px] uppercase tracking-[0.16em] text-[var(--text-secondary)] md:flex-row md:gap-8">
+      {["Close Cycle · 18 days -> 6 days", "Forecast Accuracy · 61% -> 94%", "Cash Visibility · 30 days ahead"].map((metric) => (
+        <span key={metric} className="inline-flex items-center justify-center gap-2">
+          <span className="live-dot" />
+          {metric}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function SignalBar() {
+  const line = "SERVING SCALING COMPANIES ACROSS EGYPT · GCC · MENA      EGP 20M+ REVENUE · GROWTH-STAGE · FOUNDER-LED";
+  return (
+    <section className="overflow-hidden border-y border-[oklch(100%_0_0_/_0.06)] bg-[var(--bg-deep)] py-7">
+      <div className="signal-marquee flex w-[200%] gap-16 font-data text-[10px] uppercase tracking-[0.2em] text-[oklch(50%_0_0)] md:animate-[signal-marquee_42s_linear_infinite]">
+        <span className="w-1/2 whitespace-nowrap text-center">{line}</span>
+        <span className="hidden w-1/2 whitespace-nowrap text-center md:block">{line}</span>
       </div>
     </section>
   );
@@ -105,57 +106,41 @@ function SignalBar() {
 
 function ProblemReveal() {
   return (
-    <section className="relative overflow-hidden bg-[var(--bg-void)] px-5 py-32 sm:px-8 lg:px-[10vw] lg:py-44">
+    <section className="relative overflow-hidden bg-[var(--bg-warm)] px-5 py-32 sm:px-8 lg:px-[10vw] lg:py-44">
       <div className="grid gap-16 lg:grid-cols-[0.6fr_0.4fr] lg:items-center">
         <Reveal>
-          <h2 className="font-display text-[clamp(42px,5vw,76px)] leading-[0.96] tracking-[-0.025em]">
-            You’re growing.
+          <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] leading-[0.98] tracking-[-0.02em]">
+            You&apos;re growing.
             <br />
-            But you’re flying
+            But you&apos;re flying
             <br />
             without instruments.
           </h2>
+          <p className="mt-10 font-data text-xs uppercase tracking-[0.15em] text-[oklch(45%_0_0)]">
+            No real-time cash position · Reporting arrives 3 weeks late · P&amp;L does not match decisions
+          </p>
         </Reveal>
         <Reveal delay={0.12}>
-          <ChaosVisual />
+          <ChaosFragments />
         </Reveal>
       </div>
-      <div className="mt-20 grid gap-10 border-t border-[var(--border-faint)] pt-12 text-lg font-light leading-[1.75] text-[var(--text-secondary)] md:grid-cols-2">
-        <Reveal>
-          <p>Cash flow is guesswork. Pricing is instinct. Margins are unclear. Your reporting lags by weeks. Forecasts are spreadsheets with hope.</p>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <p>You have talented people. You have revenue. But your financial infrastructure is invisible to leadership.</p>
-        </Reveal>
+      <div className="mt-20 grid gap-10 border-t border-[var(--border-faint)] pt-12 text-[1.0625rem] font-light leading-[1.7] text-[var(--text-secondary)] md:grid-cols-2">
+        <p>Cash flow is guesswork. Pricing is instinct. Margins are unclear. Your reporting lags by weeks. Forecasts are spreadsheets with hope.</p>
+        <p>You have talented people. You have revenue. But your financial infrastructure is invisible to leadership.</p>
       </div>
     </section>
   );
 }
 
-function ChaosVisual() {
+function ChaosFragments() {
   return (
-    <div className="relative h-[420px] overflow-hidden rounded-[2rem] border border-[var(--border-faint)] bg-[var(--bg-deep)]">
-      <div className="absolute inset-0 terminal-grid opacity-35" />
-        {Array.from({ length: 12 }).map((_, index) => (
-        <motion.div
-          key={index}
-          initial={false}
-          whileInView={{ opacity: 0.22, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.6, delay: index * 0.045, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute h-px bg-[rgba(242,240,235,0.32)]"
-          style={{
-            left: `${8 + index * 5}%`,
-            right: `${12 + (index % 4) * 8}%`,
-            top: `${14 + index * 6}%`
-          }}
-        />
-      ))}
-      <div className="absolute bottom-8 left-8 right-8 grid gap-3 font-data text-xs text-[var(--text-tertiary)]">
-        <span>margin variance: unresolved</span>
-        <span>cash forecast: source conflict</span>
-        <span>pricing leakage: unknown</span>
-      </div>
+    <div className="relative h-[360px] overflow-hidden rounded-2xl border border-[var(--border-faint)] bg-[var(--bg-deep)]">
+      <svg viewBox="0 0 520 360" className="absolute inset-0 h-full w-full">
+        <path d="M58 90 L130 72 L190 128 L255 96 L334 118 L430 70" fill="none" stroke="oklch(75% 0.12 85 / 0.12)" strokeWidth="2" />
+        <path d="M76 188 L142 164 L216 212 L280 172 L356 226 L454 198" fill="none" stroke="oklch(75% 0.12 85 / 0.12)" strokeWidth="2" />
+        <path d="M96 282 L164 246 L220 270 L294 238 L390 294" fill="none" stroke="oklch(75% 0.12 85 / 0.12)" strokeWidth="2" />
+      </svg>
+      <div className="absolute inset-8 terminal-grid opacity-45" />
     </div>
   );
 }
@@ -163,72 +148,70 @@ function ChaosVisual() {
 function VisibilitySystem() {
   return (
     <section className="relative overflow-hidden bg-[var(--bg-deep)] px-5 py-32 sm:px-8 lg:px-[10vw] lg:py-44">
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[var(--bg-void)] to-transparent" />
       <Reveal className="mx-auto max-w-5xl text-center">
-        <p className="text-[11px] uppercase tracking-[0.24em] text-[var(--gold-muted)]">Financial Visibility Infrastructure</p>
-        <h2 className="font-display mt-8 text-[clamp(42px,5vw,72px)] leading-[1] tracking-[-0.025em]">
+        <p className="font-data text-[11px] uppercase tracking-[0.15em] text-[var(--gold-muted)]">Financial Visibility Infrastructure</p>
+        <h2 className="font-display mt-8 text-[clamp(2rem,4vw,3.5rem)] leading-[1] tracking-[-0.02em]">
           Rakiza turns fragmented financial data into clear leadership intelligence.
         </h2>
       </Reveal>
       <Reveal delay={0.12} className="mx-auto mt-20 max-w-6xl">
-        <DashboardPanel />
+        <IntelligenceOsPanel />
       </Reveal>
     </section>
   );
 }
 
-function DashboardPanel() {
+function IntelligenceOsPanel() {
   return (
-    <div className="outer-shell relative">
-      <div className="inner-core relative overflow-hidden p-5 sm:p-8">
+    <div className="outer-shell">
+      <div className="inner-core relative overflow-x-auto p-5 sm:p-7">
         <div className="scan-line" />
-        <div className="mb-8 flex flex-col justify-between gap-4 border-b border-[var(--border-faint)] pb-6 sm:flex-row">
-          <div>
-            <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-[var(--text-tertiary)]">
-              <span className="live-dot" />
-              Live control model
-            </div>
-            <h3 className="mt-4 text-2xl font-light text-[var(--text-primary)]">Financial Control Metrics</h3>
-          </div>
-          <span className="font-data text-[11px] uppercase tracking-[0.18em] text-[var(--text-tertiary)]">Last updated: 04s ago</span>
+        <div className="mb-5 flex min-w-0 items-center justify-between gap-4 font-data text-[9px] uppercase tracking-[0.18em] text-[oklch(40%_0_0)] sm:min-w-[760px]">
+          <span>Rakiza Intelligence OS</span>
+          <span className="inline-flex items-center gap-3"><span className="live-dot" /> Live · Updated 07:42 UTC</span>
         </div>
-        <div className="grid gap-px overflow-hidden rounded-2xl bg-[var(--border-faint)] sm:grid-cols-2 lg:grid-cols-3">
-          {kpis.map(([label, value, delta], index) => (
-            <motion.div
-              key={label}
-              initial={false}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-[var(--bg-card)] p-6"
-            >
-              <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-tertiary)]">{label}</p>
-              <p className="font-data mt-5 text-[clamp(28px,3vw,42px)] text-[var(--text-data)]">{value}</p>
-              <p className="mt-4 text-xs text-[var(--text-secondary)]">{delta}</p>
-            </motion.div>
-          ))}
-        </div>
+        <table className="w-full min-w-0 border-collapse font-data text-xs tabular-nums sm:min-w-[760px] sm:text-sm">
+          <thead className="text-[9px] uppercase tracking-[0.18em] text-[oklch(40%_0_0)]">
+            <tr className="border-b border-[oklch(100%_0_0_/_0.05)]">
+              <th className="py-3 text-left font-normal">Label</th>
+              <th className="py-3 text-left font-normal">Current</th>
+              <th className="hidden py-3 text-left font-normal sm:table-cell">Prior</th>
+              <th className="hidden py-3 text-left font-normal sm:table-cell">Delta</th>
+              <th className="hidden py-3 text-left font-normal sm:table-cell">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {visibilityRows.map(([label, current, prior, delta, status, tone], index) => (
+              <tr key={label} className={`h-11 border-b border-[oklch(100%_0_0_/_0.05)] last:border-b-0 ${index > 2 ? "hidden sm:table-row" : ""}`}>
+                <td className="pr-4 text-[var(--text-secondary)]">{label}</td>
+                <td className="whitespace-nowrap text-right text-[var(--text-data)] sm:pr-5 sm:text-left">{current}</td>
+                <td className="hidden pr-5 text-[var(--text-tertiary)] sm:table-cell">{prior}</td>
+                <td className={`hidden pr-5 sm:table-cell ${delta.startsWith("+") ? "text-[oklch(70%_0.15_145)]" : "text-[oklch(70%_0.15_145)]"}`}>{delta}</td>
+                <td className="hidden h-11 items-center gap-2 text-[var(--text-secondary)] sm:inline-flex">
+                  <span className={tone === "amber" ? "h-1.5 w-1.5 rounded-full bg-[oklch(75%_0.12_85)]" : "h-1.5 w-1.5 rounded-full bg-[oklch(70%_0.15_145)]"} />
+                  {status}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
 }
 
-function SystemsList() {
+function ServicesSection() {
   return (
     <section className="bg-[var(--bg-void)] px-5 py-32 sm:px-8 lg:px-[10vw] lg:py-44">
       <Reveal>
-        <p className="text-[11px] uppercase tracking-[0.24em] text-[var(--gold-muted)]">What we build</p>
+        <p className="font-data text-[11px] uppercase tracking-[0.15em] text-[var(--gold-muted)]">Financial Advisory Egypt · What we build</p>
       </Reveal>
-      <div className="mt-10">
-        {systems.map(([number, title, copy]) => (
-          <Link
-            key={number}
-            href="/en/services"
-            className="group grid gap-5 border-b border-[var(--border-faint)] py-8 transition duration-300 hover:pl-1 md:grid-cols-[0.12fr_0.38fr_0.5fr]"
-          >
-            <span className="font-data text-xs text-[var(--text-tertiary)] transition group-hover:text-[var(--gold-muted)]">{number}</span>
-            <span className="text-2xl font-light text-[var(--text-primary)]">{title}</span>
-            <span className="text-base leading-7 text-[var(--text-secondary)] md:text-right">{copy}</span>
+      <div className="mt-12 grid border-t border-l border-[oklch(100%_0_0_/_0.05)] md:grid-cols-2 lg:grid-cols-3">
+        {services.map(([title, copy]) => (
+          <Link key={title} href="/en/services" className="group border-r border-b border-[oklch(100%_0_0_/_0.05)] p-8 transition duration-200 hover:-translate-y-px">
+            <h3 className="font-display text-[1.35rem] leading-tight text-[var(--text-primary)]">{title}</h3>
+            <span className="mt-4 block h-px w-0 bg-[var(--gold-muted)] transition-all duration-300 group-hover:w-12" />
+            <p className="mt-4 text-sm leading-6 text-[var(--text-secondary)]">{copy}</p>
           </Link>
         ))}
       </div>
@@ -237,36 +220,24 @@ function SystemsList() {
 }
 
 function IntelligenceDetails() {
-  const rows = [
-    ["Cash Conversion Cycle", "34 days", "-8 vs prior quarter"],
-    ["Forecast Accuracy", "91%", "Above 90% threshold"],
-    ["Gross Margin", "64.2%", "Sector benchmark: 58-65%"],
-    ["Reporting Latency", "3 days", "From 11 days at intake"],
-    ["Pricing Leakage Risk", "LOW", "Monitored weekly"],
-    ["Monthly Close", "Day 4", "Within 5-day target"],
-    ["Working Capital Ratio", "1.8x", "Healthy threshold: >1.5x"],
-    ["Runway", "11 months", "Extended from 7 months"]
-  ];
-
   return (
     <section className="bg-[var(--bg-deep)] px-5 py-32 sm:px-8 lg:px-[10vw] lg:py-44">
       <div className="grid gap-16 lg:grid-cols-[0.48fr_0.52fr] lg:items-center">
         <Reveal>
-          <h2 className="font-display text-[clamp(42px,4.8vw,70px)] leading-[1] tracking-[-0.025em]">
+          <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1] tracking-[-0.02em]">
             Your business already generates the data. We build the systems that make it speak.
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
           <div className="outer-shell">
-            <div className="inner-core relative overflow-hidden p-6">
-              <div className="scan-line" />
-              <h3 className="mb-7 text-[11px] uppercase tracking-[0.22em] text-[var(--text-tertiary)]">Financial Control Metrics</h3>
-              <div className="grid gap-px bg-[var(--border-faint)]">
-                {rows.map(([label, value, note]) => (
-                  <div key={label} className="grid grid-cols-[1fr_0.36fr_0.9fr] gap-4 bg-[var(--bg-card)] px-4 py-4 text-sm">
-                    <span className="text-[var(--text-secondary)]">{label}</span>
-                    <span className="font-data text-[var(--text-data)]">{value}</span>
-                    <span className="text-right text-[var(--text-tertiary)]">{note}</span>
+            <div className="inner-core p-6">
+              <h3 className="mb-5 font-data text-[9px] uppercase tracking-[0.18em] text-[oklch(40%_0_0)]">Operational Cadence Metrics</h3>
+              <div className="grid gap-px bg-[oklch(100%_0_0_/_0.05)] font-data text-sm">
+                {cadenceRows.map(([label, state, detail]) => (
+                  <div key={label} className="grid grid-cols-[1fr_0.45fr_0.95fr] gap-4 bg-[var(--bg-card)] px-4 py-4">
+                    <span className="uppercase text-[var(--text-secondary)]">{label}</span>
+                    <span className="text-[var(--text-data)]">{state}</span>
+                    <span className="text-right text-[var(--text-tertiary)]">{detail}</span>
                   </div>
                 ))}
               </div>
@@ -282,50 +253,33 @@ function ControlStatement() {
   return (
     <section className="bg-[var(--bg-void)] px-5 py-32 text-center sm:px-8 lg:px-[10vw] lg:py-48">
       <div className="mx-auto max-w-5xl">
-        <h2 className="font-display text-[clamp(42px,5.5vw,82px)] leading-[1] tracking-[-0.025em]">
-          {controlWords.map((word, index) => (
-            <motion.span
-              key={`${word}-${index}`}
-              initial={false}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.03, ease: [0.16, 1, 0.3, 1] }}
-              className="mr-[0.18em] inline-block"
-            >
-              {word}
-            </motion.span>
-          ))}
+        <h2 className="font-display text-[clamp(2.5rem,5.5vw,5.75rem)] leading-[1] tracking-[-0.02em]">
+          We do not deliver reports. We build your financial operating rhythm.
         </h2>
-        <p className="mx-auto mt-10 max-w-2xl text-lg font-light leading-[1.75] text-[var(--text-secondary)]">
-          The difference between a growing company and a scaling company is financial control. Not
-          spreadsheets. Not monthly PDFs. A living system that runs before decisions are made.
+        <p className="mt-10 font-data text-xs uppercase tracking-[0.15em] text-[oklch(40%_0_0)]">
+          Monthly Close · Weekly Pulse · Real-Time Visibility · Scenario Modeling · Board Intelligence
         </p>
       </div>
     </section>
   );
 }
 
-function ScalingCascade() {
-  const panels = [
-    "Visibility without control is just awareness.",
-    "Control without intelligence is just process.",
-    "Intelligence with systems is compounding advantage."
-  ];
-
+function ScalingArc() {
   return (
     <section className="bg-[var(--bg-deep)] px-5 py-32 sm:px-8 lg:px-[10vw] lg:py-44">
-      <div className="relative mx-auto max-w-5xl">
-        {panels.map((panel, index) => (
+      <div className="mx-auto max-w-5xl">
+        {arc.map(([number, phase, copy], index) => (
           <motion.div
-            key={panel}
+            key={phase}
             initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.15, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-            className="group relative border-l-2 border-[rgba(201,169,110,0.42)] bg-[var(--bg-surface)] p-8 shadow-[0_28px_120px_rgba(0,0,0,0.26)] transition duration-500 hover:z-10 hover:translate-x-1 sm:p-12"
-            style={{ marginTop: index === 0 ? 0 : -12, marginLeft: `${index * 3}%` }}
+            transition={{ duration: 0.9, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="grid gap-6 border-b border-[oklch(100%_0_0_/_0.04)] py-12 md:grid-cols-[0.2fr_0.35fr_0.45fr]"
           >
-            <p className="font-display text-[clamp(32px,4vw,56px)] leading-[1.05] text-[var(--text-primary)]">{panel}</p>
+            <span className="font-data text-6xl text-[oklch(20%_0_0)]">{number}</span>
+            <h3 className={index === 2 ? "font-display text-4xl text-[var(--gold-muted)]" : "font-display text-4xl"}>{phase}</h3>
+            <p className="text-lg leading-[1.7] text-[var(--text-secondary)]">{copy}</p>
           </motion.div>
         ))}
       </div>
@@ -336,41 +290,46 @@ function ScalingCascade() {
 function FoundingAccess({ locale }: { locale: Locale }) {
   return (
     <article className="bg-[var(--bg-void)] px-5 py-32 sm:px-8 lg:px-[10vw] lg:py-48">
-      <Reveal className="mx-auto max-w-5xl text-center">
-        <p className="text-[11px] uppercase tracking-[0.24em] text-[var(--gold-muted)]">Founding Client Access · By Qualification</p>
-        <h2 className="font-display mt-8 text-[clamp(44px,5vw,76px)] leading-[1] tracking-[-0.025em]">
-          Built for businesses ready to be seen clearly.
+      <Reveal className="mx-auto max-w-4xl text-center">
+        <p className="font-data text-[11px] uppercase tracking-[0.15em] text-[var(--gold-muted)]">Founding Client Access</p>
+        <h2 className="font-display mt-8 text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-[-0.02em]">
+          Limited to 6 engagements per quarter.
         </h2>
-        <p className="mx-auto mt-8 max-w-3xl text-lg font-light leading-[1.75] text-[var(--text-secondary)]">
-          Rakiza accepts a limited number of founding clients per quarter. Founding access includes a
-          private Financial Control Readiness diagnostic, an advisory path recommendation, and direct
-          access to the founding team.
+        <p className="mx-auto mt-8 max-w-3xl text-[1.0625rem] font-light leading-[1.7] text-[var(--text-secondary)]">
+          We work with companies who are ready to build financial infrastructure that compounds.
+          Before we speak, we review your context. There are no cold calls. No pitches. No decks.
+        </p>
+        <p className="mx-auto mt-8 max-w-3xl text-sm leading-7 text-[var(--text-secondary)]">
+          Revenue between EGP 20M and EGP 500M · Founder or executive-led with a growth mandate ·
+          Committed to building real financial operating systems. SME Financial Advisory for
+          companies ready to be measured.
         </p>
       </Reveal>
       <Reveal delay={0.12} className="mx-auto mt-16 max-w-4xl">
         <div className="outer-shell">
           <div className="inner-core p-6 sm:p-9">
             <LockKeyhole className="text-[var(--gold-muted)]" size={22} />
-            <div className="mt-8 grid gap-8 lg:grid-cols-2">
-              <Question title="Company stage" options={["Growth-stage startup", "Established SME (20M+ EGP revenue)", "Real Estate / FMCG / F&B operator", "Other"]} />
-              <Question title="Primary financial challenge" options={["No visibility into cash flow or runway", "Forecasts exist but are not trusted", "Pricing feels disconnected from margins", "Reporting is slow and not board-ready"]} />
+            <div className="mt-8 grid gap-7 md:grid-cols-2">
+              <Field label="Company name" placeholder="Company legal or trade name" />
+              <SelectLike label="Revenue range" value="EGP 20M - EGP 500M" />
+              <SelectLike label="Primary challenge" value="Visibility, forecasting, pricing, or reporting" />
+              <Field label="Executive email" placeholder="name@company.com" />
             </div>
-            <div className="mt-8">
-              <label className="text-[11px] uppercase tracking-[0.22em] text-[var(--text-tertiary)]">Founder / executive email</label>
-              <input
+            <div className="mt-7">
+              <label className="font-data text-[11px] uppercase tracking-[0.18em] text-[var(--text-tertiary)]">Brief context</label>
+              <textarea
                 suppressHydrationWarning
-                className="mt-4 w-full border-0 border-b border-[rgba(201,169,110,0.34)] bg-transparent px-0 py-4 text-[var(--text-primary)] outline-none placeholder:text-[var(--text-tertiary)]"
-                placeholder="name@company.com"
+                className="mt-3 min-h-28 w-full resize-none border-0 border-b border-[oklch(100%_0_0_/_0.1)] bg-transparent py-4 text-base text-[var(--text-primary)] outline-none transition focus:border-[var(--gold-primary)]"
+                placeholder="What financial control problem needs to be solved first?"
+                spellCheck={false}
+                style={{ caretColor: "var(--text-primary)" }}
               />
             </div>
-            <Link
-              href={localizedPath(locale, "/waiting-list")}
-              className="mt-9 inline-flex w-full items-center justify-center gap-3 rounded-full border border-[rgba(201,169,110,0.54)] px-6 py-5 text-xs font-medium uppercase tracking-[0.18em] text-[var(--gold-primary)] transition duration-500 hover:border-[var(--gold-primary)] hover:text-[var(--text-primary)]"
-            >
-              Request Diagnostic Access <span className="grid h-7 w-7 place-items-center rounded-full border border-[rgba(201,169,110,0.34)]"><ArrowRight size={13} /></span>
+            <Link href={localizedPath(locale, "/waiting-list")} className="mt-9 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full border border-[oklch(75%_0.12_85_/_0.4)] bg-[oklch(6%_0.005_60)] px-6 text-xs font-medium uppercase tracking-[0.18em] text-[var(--gold-primary)] transition duration-300 hover:border-[var(--gold-primary)] hover:bg-[oklch(75%_0.12_85_/_0.06)]">
+              Request Private Access <ArrowRight size={14} />
             </Link>
             <p className="mt-6 text-center text-xs leading-6 text-[var(--text-tertiary)]">
-              Applications are reviewed personally. Founding client positions are limited per quarter.
+              All submissions reviewed personally by Rakiza principals. Response within 5 business days.
             </p>
           </div>
         </div>
@@ -379,18 +338,23 @@ function FoundingAccess({ locale }: { locale: Locale }) {
   );
 }
 
-function Question({ title, options }: { title: string; options: string[] }) {
+function Field({ label, placeholder }: { label: string; placeholder: string }) {
   return (
-    <div>
-      <h3 className="text-sm uppercase tracking-[0.18em] text-[var(--text-secondary)]">{title}</h3>
-      <div className="mt-5 grid gap-3">
-        {options.map((option) => (
-          <label key={option} className="flex items-center gap-3 text-sm text-[var(--text-secondary)]">
-            <Circle size={9} className="text-[var(--gold-muted)]" />
-            <span>{option}</span>
-          </label>
-        ))}
-      </div>
-    </div>
+    <label>
+      <span className="font-data text-[11px] uppercase tracking-[0.18em] text-[var(--text-tertiary)]">{label}</span>
+      <input suppressHydrationWarning spellCheck={false} autoComplete="off" style={{ caretColor: "var(--text-primary)" }} className="mt-3 w-full border-0 border-b border-[oklch(100%_0_0_/_0.1)] bg-transparent py-4 text-base text-[var(--text-primary)] outline-none transition placeholder:text-[var(--text-tertiary)] focus:border-[var(--gold-primary)]" placeholder={placeholder} />
+    </label>
+  );
+}
+
+function SelectLike({ label, value }: { label: string; value: string }) {
+  return (
+    <label>
+      <span className="font-data text-[11px] uppercase tracking-[0.18em] text-[var(--text-tertiary)]">{label}</span>
+      <span className="mt-3 flex min-h-14 w-full items-center justify-between border-b border-[oklch(100%_0_0_/_0.1)] py-4 text-base text-[var(--text-secondary)]">
+        {value}
+        <Circle size={8} className="text-[var(--gold-muted)]" />
+      </span>
+    </label>
   );
 }

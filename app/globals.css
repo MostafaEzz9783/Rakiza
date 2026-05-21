@@ -3,25 +3,26 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
-  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-  --font-ui: "Geist", "Inter", "IBM Plex Sans Arabic", system-ui, sans-serif;
-  --font-data: "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+  color-scheme: dark;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-ui: "Geist", "DM Sans", "Outfit", sans-serif;
+  --font-data: "Geist Mono", "JetBrains Mono", monospace;
   --font-sans: var(--font-ui);
-  --bg-void: #040404;
-  --bg-deep: #080808;
-  --bg-surface: #0d0d0d;
-  --bg-card: #111111;
-  --border-faint: rgba(242, 240, 235, 0.04);
-  --border-subtle: rgba(242, 240, 235, 0.07);
-  --border-visible: rgba(242, 240, 235, 0.1);
-  --gold-primary: #c9a96e;
-  --gold-muted: #a88a50;
-  --gold-whisper: rgba(201, 169, 110, 0.12);
-  --text-primary: #f2f0eb;
-  --text-secondary: #8a8680;
-  --text-tertiary: #4a4845;
-  --text-data: #b8a88a;
+  --bg-void: oklch(2.5% 0.005 60);
+  --bg-deep: oklch(4% 0.005 60);
+  --bg-warm: oklch(9% 0.008 50);
+  --bg-surface: oklch(6% 0.005 60);
+  --bg-card: oklch(7% 0.006 60);
+  --border-faint: oklch(100% 0 0 / 0.04);
+  --border-subtle: oklch(100% 0 0 / 0.07);
+  --border-visible: oklch(100% 0 0 / 0.1);
+  --gold-primary: oklch(75% 0.12 85);
+  --gold-muted: oklch(62% 0.075 85);
+  --gold-whisper: oklch(75% 0.12 85 / 0.04);
+  --text-primary: oklch(94% 0.008 75);
+  --text-secondary: oklch(63% 0.008 75);
+  --text-tertiary: oklch(39% 0.006 75);
+  --text-data: oklch(76% 0.045 82);
   --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-authority: cubic-bezier(0.4, 0, 0.2, 1);
   --background: var(--bg-void);
@@ -93,9 +94,10 @@ a {
 
 .control-grid {
   background-image:
-    linear-gradient(rgba(250, 248, 244, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(250, 248, 244, 0.045) 1px, transparent 1px);
-  background-size: 72px 72px;
+    linear-gradient(oklch(100% 0 0 / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(100% 0 0 / 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: section-grid 28s linear infinite;
 }
 
 .terminal-grid {
@@ -127,16 +129,16 @@ a {
 }
 
 .outer-shell {
-  border: 1px solid var(--border-visible);
-  border-radius: 1.5rem;
-  background: rgba(242, 240, 235, 0.018);
-  padding: 0.5rem;
+  border: 1px solid oklch(100% 0 0 / 0.06);
+  border-radius: 16px;
+  background: oklch(8% 0.005 60 / 0.6);
+  padding: 2px;
 }
 
 .inner-core {
-  border-radius: calc(1.5rem - 0.5rem);
-  background: var(--bg-card);
-  box-shadow: inset 0 1px 0 rgba(242, 240, 235, 0.055);
+  border-radius: 14px;
+  background: oklch(6% 0.005 60);
+  box-shadow: inset 0 1px 0 oklch(100% 0 0 / 0.08);
 }
 
 .scan-line {
@@ -165,6 +167,31 @@ a {
   }
   to {
     transform: translate3d(80px, 80px, 0);
+  }
+}
+
+@keyframes section-grid {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 80px 80px;
+  }
+}
+
+@keyframes signal-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 767px) {
+  .signal-marquee {
+    animation: none !important;
+    transform: none !important;
   }
 }
 
